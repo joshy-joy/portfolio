@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+
+<div class="container">
+    <div style="padding: 1rem; margin-top: 2rem; margin-right: 30%; margin-bottom: 2rem;">
+        <h1>New Notifications</h1><hr>
+    </div>
+    <div class="accordion" id="accordionExample">
+        {% for log in logs %}
+            {% if not log.seen %}
+                <div class="card" style="border: 0.5px solid white;max-width: 70%;">
+                    <div class="card-header" style="background-color: #00fa75;">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ log.id }}" aria-expanded="true" aria-controls="{{ log.id }}" style="text-decoration: none; color: white;float: left; padding-right: 80%;">
+                                {{ log.event }}
+                            </button>
+                            <a class="btn btn-block btn-sm btn-primary" href="/mark-as-read/{{ log.id }}" style="float: left;max-width: 10%; margin: 0; padding-top: 0.5rem;">Readed</a>
+                        </h2>
+                    </div>
+                        
+                    <div id="{{ log.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div style="padding: 1rem; margin-top: 2rem; margin-right: 30%; margin-bottom: 2rem;">
+        <h1>All Notifications</h1><hr>
+    </div>
+    <div class="accordion" id="accordionExample">
+        {% for log in logs %}
+            {% if log.seen %}
+                <div class="card" style="border: 0.5px solid #9ef7e7;max-width: 70%;">
+                    <div class="card-header">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ log.id }}" aria-expanded="true" aria-controls="{{ log.id }}" style="text-decoration: none; float: left; padding-right: 80%;">
+                                {{ log.event }}
+                            </button>
+                        </h2>
+                    </div>
+                        
+                    <div id="{{ log.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

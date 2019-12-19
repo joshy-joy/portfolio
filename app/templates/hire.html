@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% set active_page = "hire" %}
+
+
+{% block head %}
+
+<!--hire Form style -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/montserrat-font.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+<!-- Main Style Css -->
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/form_style.css') }}"/>
+
+{% endblock %}
+
+{% block body %}
+<h1 class="text-uppercase title-text text-center">HIRE</h1>
+<body class="form-v10">
+	<div class="page-content">
+		<div class="form-v10-content">
+			<form class="form-detail" method="POST" id="myform">
+				<div class="form-left">
+					<h2>General Infomation</h2>
+					<div class="form-row">
+						<select name="title">
+						    <option class="option" value="title">Title</option>
+						    <option class="option" value="mr">Mr.</option>
+						    <option class="option" value="ms">Ms.</option>
+						</select>
+						<span class="select-btn">
+						  	<i class="zmdi zmdi-chevron-down"></i>
+						</span>
+					</div>
+					<div class="form-group">
+						<div class="form-row form-row-1">
+							<input type="text" name="first_name" id="first_name" class="input-text" placeholder="First Name" required>
+						</div>
+						<div class="form-row form-row-2">
+							<input type="text" name="last_name" id="last_name" class="input-text" placeholder="Last Name" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<input type="email" name="email" class="email" id="email" placeholder="Email" required>
+					</div>
+					<div class="form-row">
+						<input type="text" name="company" class="company" id="company" placeholder="Company">
+					</div>
+					<div class="form-row">
+						<input type="text" name="business" class="company" id="business" placeholder="Business Arena" required>
+                    </div>
+                    <div class="form-group">
+						<div class="form-row form-row-1">
+							<input type="text" name="code" class="code" id="code" placeholder="Code +" pattern = "\+\d{1,}" maxlength="5" oninvalid="this.setCustomValidity('Only numbers and + symbols. Please enter a valid Country Code')" onchange="this.setCustomValidity('')" required>
+						</div>
+						<div class="form-row form-row-2">
+							<input type="text" name="phone" class="phone" id="phone" placeholder="Phone Number" pattern = "\d{6,}" maxlength="13" oninvalid="this.setCustomValidity('Only numbers. Please enter a valid number')" onchange="this.setCustomValidity('')" required>
+						</div>
+                    </div>
+                    <div class="form-row">
+						<input type="text" name="country" class="company" id="business" placeholder="Country" required>
+                    </div>
+                </div>
+                
+
+				<div class="form-right">
+                    <h2>Project Details</h2>
+					<div class="form-row">
+						<input type="text" name="project_type" class="street" id="street" placeholder="Project Type" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row form-row-1">
+                            <select name="budget_type" required>
+                                <option value="">Type</option>
+                                <option value="fixed">Fixed</option>
+                                <option value="hour">Hourly</option>
+                            </select>
+                            <span class="select-btn">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="form-row form-row-2">
+                            <input type="number" name="budget" class="additional" id="additional" placeholder="Budget $" required>
+                        </div>
+                    </div>
+					<div class="form-row">
+						<select name="duration" required>
+                            <option value="">Duration</option>
+						    <option value="1_month">Less than 1 Month</option>
+						    <option value="6_month">1-6 month</option>
+						    <option value="12_month">6-12 month</option>
+						    <option value="12+">Long Term</option>
+						</select>
+						<span class="select-btn">
+						  	<i class="zmdi zmdi-chevron-down"></i>
+						</span>
+					</div>
+					<div class="form-row-last">
+						<input class="updateButton" type="submit" name="submit" class="register" value="Hire Me">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+{% endblock %}

@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% set active_page = "home" %}
+
+
+{% block body %}
+
+<!--  ======================= Start Banner Area =======================  -->
+        <section class="site-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 site-title">
+                        <h3 class="title-text">Hey</h3>
+                        <h1 class="title-text text-uppercase">I am Joshy</h1>
+                        <h4 class="title-text text-uppercase">Data Scientist and Full Stack Developer</h4>
+                        <div class="site-buttons">
+                            <div class="d-flex flex-row flex-wrap">
+                                <a href="/hire"><button type="button" class="btn button primary-button mr-4 text-uppercase">hire
+                                    me</button></a>
+                                <a href="/download-cv" target="_blank"><button type="button" class="btn button secondary-button text-uppercase">Get cv</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 banner-image">
+                        <img src="{{ url_for('static', filename = 'img/avatar.png') }}" alt="banner-img" class="img-fluid" style="border-radius: 50%; width: 90%;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  ======================= End Banner Area =======================  -->
+
+        <!--  ========================= About Area ==========================  -->
+
+        <section class="about-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="about-image">
+                                <img src="{{ url_for('static', filename = 'img/about-us.png') }}" alt="About us" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 about-title">
+                            <h2 class="text-uppercase pt-5">
+                                <span>Let me</span>
+                                <span>introduce</span>
+                                <span>myself</span>
+                            </h2>
+                            <div class="paragraph py-4 w-75">
+                                <p class="para">
+                                        Highly motivated individual with a goal-driven work ethic. Strong curiosity for
+                                        Artificial Intelligence, Data Science and well versed in Full-stack software development.
+                                </p>
+                                <p class="para">
+                                    I develop full-stack software in python including Dynamic Web pages, REST API,
+                                    Machine learning models, Deep Neural Networks and Data analysis dashboards.
+                                </p>
+                            </div>
+                            <a href="/download-cv" target="_blank"><button type="button" class="btn button primary-button text-uppercase">Download cv</button></a>
+                        </div>
+                    </div>
+                </div>
+            </section><br><br><br><br><br>
+    
+            <!--  ========================= End About Area ==========================  -->
+
+            <!--  ======================== Brand Area ==============================  -->
+
+        <section class="brand-area">
+                <div class="row">
+                    <div class="col-lg-12 text-center services-title">
+                        <h1 class="text-uppercase title-text">SKILLS</h1>
+                        <p class="para">
+                            These are my strength. Apart from this, I'm a quick learner. 
+                        </p>
+                        <p class="para">
+                            My area of interest includes Artificial Intelligence, Data Science, 
+                            Machine Learning, Deep Learning and Full-stack Development. 
+                        </p>
+                    </div>
+                </div><br><br><br><br><br>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12 col-md-12">
+                            <div class="first-row row">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/python.png') }}" alt="Brand-1 ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/django.png') }}" alt="Brand-2 ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/flask.png') }}" alt="Brand-3 ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/sklearn.png') }}" alt="Brand-4">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/tensorflow.png') }}" alt="Brand-5 ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/keras.png') }}" alt="Brand-6">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/js.png') }}" alt="Brand-7 ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/git.png') }}" alt="Brand-8 ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="single-brand">
+                                        <img src="{{ url_for('static', filename = 'img/brands/db.png') }}" alt="Brand-9">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12 col-md-12">
+                            <div class="experience-area">
+                                <div class="d-flex flex-row years-area">
+                                    <h2 class="p-3 years">I'M</h2>
+                                    <h2>
+                                        <span>Passion</span>
+                                        <span>Curious</span>
+                                        <span>Enthusiastic</span>
+                                        <br>
+                                        <a href="https://github.com/joshy-joy" target="_blank" ><button type="button" class="btn button primary-button text-uppercase">Github</button></a>
+                                    </h2>
+                                </div>
+                                <div class="d-flex flex-row flex-wrap call-area">
+                                    <span><i class="fas fa-phone-alt fa-3x px-3"></i></span>
+                                    <div class="call-now">
+                                        <h3 class="text-uppercase h4 font-roboto">Call Now</h3>
+                                        <span class="font-roboto py-2">(+91)-9961391208</span>
+                                        <span class="font-roboto py-2">(+91)-7907692651</span>
+                                    </div>
+                                </div>
+                                <div class="bg-panel"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!--  ======================== End Brand Area ==============================  -->
+
+            <!--  ======================= Project Area =============================  -->
+
+        <section class="project-area">
+                <div class="container">
+                    <div class="project-title pb-5 text-center">
+                        <h1 class="text-uppercase title-h1">Recently Done Project</h1>
+                        <h1 class="text-uppercase title-h1">Quality Work</h1>
+                    </div>
+    
+                    <div class="row grid text-center">
+                        {% for project in projects %}
+                        <div class="col-lg-4 col-md-6 col-sm-12 element-item latest">
+                            <div class="our-project">
+                                <div class="img">
+                                    <a href="{{ project.link }}" target="_blank">
+                                        <img src="{{ url_for('static', filename = 'uploads/project/' + project['image'])}}" alt="portfolio-1" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="title py-4">
+                                    <h4 class="text-uppercase">{{ project.title }}</h4>
+                                    <span class="text-secondary">{{ project.description }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+    
+            <!--  ======================= End Project Area =============================  -->
+    
+            <!--  ====================== Start Services Area =============================  -->
+    
+            <section class="services-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center services-title">
+                            <h1 class="text-uppercase title-text">Services Offers</h1>
+                        </div>
+                    </div>
+                    <div class="container services-list">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="services">
+                                    <a href="https://drive.google.com/file/d/1j2XYiAP2eB9TiYLUTx03NZCOZ-yiN7bV/view?usp=sharing", target="_blank">
+                                        <div class="sevices-img text-center py-4">
+                                            <img src="{{ url_for('static', filename = 'img/services/fullstack.png') }}" alt="Services-1">
+                                        </div>
+                                    </a>
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title text-uppercase font-roboto">Full Stack Developer</h5>
+                                        <p class="card-text text-secondary">
+                                            Work on the full stack of an 
+                                            application, from Front-end, Back-end,Database, Server, 
+                                            API and Version Controlling Systems.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="services">
+                                    <div class="sevices-img text-center py-4">
+                                        <img src="{{ url_for('static', filename = 'img/services/datascience.png') }}" alt="Services-2">
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title text-uppercase font-roboto">Data Science</h5>
+                                        <p class="card-text text-secondary">
+                                            <br>
+                                            Uses scientific methods, processes, algorithms and systems
+                                            to extract knowledge and insights from structured and 
+                                            unstructured data
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="services">
+                                    <a href="https://www.coursera.org/account/accomplishments/verify/87LQMUXWW7X4?utm_medium=certificate&utm_source=link&utm_campaign=copybutton_certificate" target="_blank">
+                                        <div class="sevices-img text-center py-4">
+                                            <img src="{{ url_for('static', filename = 'img/services/ml.png') }}" alt="Services-3">
+                                        </div>
+                                    </a>
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title text-uppercase font-roboto">Machine Learning</h5>
+                                        <p class="card-text text-secondary">
+                                            <br>
+                                            Develop systems with ability to automatically learn and improve from 
+                                            experience without being explicitly programmed
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="services">
+                                    <a href="https://www.coursera.org/account/accomplishments/specialization/UWNFEHZPUDMD?utm_medium=certificate&utm_source=link&utm_campaign=copybutton_certificate" target="_blank">
+                                        <div class="sevices-img text-center py-4">
+                                            <img src="{{ url_for('static', filename = 'img/services/dl.png') }}" alt="Services-4">
+                                        </div>
+                                    </a>
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title text-uppercase font-roboto">Deep Learning</h5>
+                                        <p class="card-text text-secondary">
+                                            <br>
+                                            Subfield of machine learning concerned with algorithms inspired by the
+                                            structure and function of the brain called artificial neural networks.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!--  ====================== End Services Area =============================  -->
+
+            <!--  ========================== Subscribe me Area ============================  -->
+        <section class="subscribe-us-area">
+                <div class="container subscribe">
+                    <div class="row">
+                        <div class="col-lg-12 text-center subscribe-title">
+                            <h4 class="text-uppercase">Get Update From anywhere</h4>
+                            <p class="para">Get email updates from me.</p>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex justify-content-center">
+                        <form class="w-50" method="POST" action="{{ url_for('subscription', page = 'home') }}">
+                            <div class="row d-flex flex-row flex-wrap">
+                                <div class="col input-textbox">
+                                    <input type="email" id="txtemail" class="form-control" placeholder="Email" name="email" required>
+                                </div>
+                                <div class="col">
+                                    <div class="btn-submit">
+                                        <button type="submit" class="btn btn-success float-right">Subscribe</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <!--  ========================== End Subscribe me Area ============================  -->
+    
+        </main>
+        <!--  ======================= End Main Area ================================ -->
+    
+
+{% endblock %}

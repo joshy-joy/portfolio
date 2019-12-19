@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JOSH! - The Data Developer</title>
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename = 'img/favicon.png') }}" />
+
+
+
+    <!--  Bootstrap css file  -->
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'css/bootstrap.min.css') }}">
+
+    <!--  font awesome icons  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename ='css/all.min.css') }}">
+
+
+    <!--  Magnific Popup css file  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'vendor/Magnific-Popup/dist/magnific-popup.css') }}">
+
+
+    <!--  Owl-carousel css file  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'vendor/owl-carousel/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'vendor/owl-carousel/css/owl.theme.default.min.css') }}">
+
+
+    <!--  custom css file  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+
+    <!--  Responsive css file  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/responsive.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.css') }}">
+
+    {% block head %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+    {% include 'includes/_navbar.html' %}
+
+    <main class="site-main">
+
+    {% block body %}
+
+    {% endblock %}
+
+
+    <footer class="footer-area">
+        <div class="container">
+            <div class="">
+                <div class="site-logo text-center py-4">
+                    <a href="#"><img src="{{ url_for('static', filename = 'img/logo.png') }}" alt="logo"></a>
+                </div>
+                <div class="social text-center">
+                    <h5 class="text-uppercase">Follow me</h5>
+                    <a href="https://www.facebook.com/Enne.veruthe.vittere" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/jo_josh.y/" target="_blank" ><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/joshy-joy/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/joshy-joy" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="copyrights text-center">
+                    <p class="para">
+                        Copyright ©2019 All rights reserved | This template is made with by
+                        <a href="/"><span style="color: var(--primary-color);">JOSH</span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</main>
+
+    <!--  Jquery js file  -->
+    <script src="{{ url_for('static', filename = 'js/jquery.3.4.1.js') }}"></script>
+
+    <!--  Bootstrap js file  -->
+    <script src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+
+    <!--  isotope js library  -->
+    <script src="{{ url_for('static', filename = 'vendor/isotope/isotope.min.js') }}"></script>
+
+    <!--  Magnific popup script file  -->
+    <script src="{{ url_for('static', filename = 'vendor/Magnific-Popup/dist/jquery.magnific-popup.min.js') }}"></script>
+
+    <!--  Owl-carousel js file  -->
+    <script src="{{ url_for('static', filename = 'vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
+
+    <!--  custom js file  -->
+    <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+
+    
+    <!--===============================================================================================-->
+        <script src="{{ url_for('static', filename = 'vendor/animsition/js/animsition.min.js') }}"></script>
+    <!--===============================================================================================-->
+        <script src="{{ url_for('static', filename = 'vendor/bootstrap/js/popper.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!--===============================================================================================-->
+        <script src="{{ url_for('static', filename = 'vendor/select2/select2.min.js') }}"></script>
+        <script>
+            $(".selection-2").select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $('#dropDownSelect1')
+            });
+        </script>
+    <!--===============================================================================================-->
+        <script src="{{ url_for('static', filename = 'vendor/daterangepicker/moment.min.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'vendor/daterangepicker/daterangepicker.js') }}"></script>
+    <!--===============================================================================================-->
+        <script src="{{ url_for('static', filename = 'vendor/countdowntime/countdowntime.js') }}"></script>
+    <!--===============================================================================================-->
+        
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+    
+          gtag('config', 'UA-23581568-13');
+        </script>
+        
+        <script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('content');
+        </script>
+
+</body>
+
+</html>

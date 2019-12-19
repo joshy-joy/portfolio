@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+{% include 'includes/_admin_header.html' %}
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-sm">
+            <h1> Posts</h1>
+            <br>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for blog in blogs %}
+                <tr>
+                    <th>{{ blog.id }}</th>
+                    <th>
+                        <a href="{{ url_for('blog_page', id = blog.id) }}" target="_blank" style="color: black; text-decoration: none;">{{ blog.title }}</a>
+                    </th>
+                    <th><a href="edit-blog/{{ blog.id }}" class="btn btn-secondary btn-sm" style="border-radius: 0;">Edit</a></th>
+                    <th>
+                        <form action = "{{ url_for('delete_blog', id = blog.id) }}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" class="btn btn-danger btn-sm" style="border-radius: 0;" value="Delete">
+                        </form>
+                    </th>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-sm">
+            <h1>Portfolio</h1>
+            <br>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for project in projects %}
+                    <tr>
+                        <th>{{ project.id }}</th>
+                        <th>
+                            <a href="{{ url_for('blog_page', id = project.id) }}" target="_blank" style="color: black; text-decoration: none;">{{ project.title }}</a>
+                        </th>
+                        <th><a href="edit-project/{{ project.id }}" class="btn btn-secondary btn-sm"style="border-radius: 0;" >Edit</a></th>
+                        <th>
+                            <form action = "{{ url_for('delete_article', id = project.id) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="submit" class="btn btn-danger btn-sm" style="border-radius: 0;" value="Delete">
+                            </form>
+                        </th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <hr>
+</div>
+
+{% endblock %}

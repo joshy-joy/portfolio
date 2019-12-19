@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+{% include 'includes/_admin_header.html' %}
+
+<div class="container">
+    {% include 'includes/_messages.html' %}
+    <h2 style="padding: 1rem;">Register New User</h2>
+    <form method="POST">
+        <div class="form-row">
+            <div class="col" style="max-width: 50%; border: 0.5px solid black; padding: 2rem;">
+                <input type="text" class="form-control" name = "username" placeholder="Username" style="margin: 1rem;" required>
+                <input type="password"  class="form-control" name = "password" placeholder="password" style="margin: 1rem;" required>
+                <input type="password" class="form-control" name = "confirm" placeholder="confirm" style="margin: 1rem;" required>
+                <input type="submit" class="btn btn-primary btn-md" value = "submit" placeholder="confirm" style="margin: 1rem; border-radius: 0;">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% include 'includes/_admin_header.html' %}
+
+<div class="container">
+    <form method="POST" id="project-form" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="text" name="title" class="form-control" id="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <input type="text" name="link" class="form-control" id="title" placeholder="Project Link">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea id = project-form name="description" class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <div class="input-group" style="width: 30%;">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Upload image</label>
+            </div>
+        </div>
+        <div class="form-group" style="padding-top: 2rem;">
+            <p>
+                <button type="submit" class="btn btn-primary">Publish</button>
+                <a class="btn btn-danger" href="/dashboard" role="button">Cancel</a>
+            </p>
+        </div>
+    </form>
+</div>
+{% endblock %}

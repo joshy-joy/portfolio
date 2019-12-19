@@ -1,0 +1,212 @@
+
+    .blog-content {
+        font-family: 'Playfair Display';
+    }
+
+    
+    .blog-h {
+        font-size: 40px;
+        font-family: 'Josefin Sans', sans-serif;
+        text-decoration: none;
+        color: white;
+
+    }
+    .header {
+        padding-top: 5rem; 
+        margin-right: 18%; 
+        margin-left: 10%;
+    }
+
+    .blog-header {
+        float: left; 
+        padding-right: 1rem;
+    }
+
+    .title {
+        font-family: 'Playfair Display';
+    }
+
+    .content-col {
+        margin-left: 7rem;
+    }
+
+    .content {
+        font-family: 'PT Serif', serif;
+        font-size: 22px;
+        margin-right: 12rem;
+        padding-top: 5rem;
+
+    }
+
+    .blog-card {
+        font-size: 20px;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    
+    .date {
+        font-size: 12px;
+        padding-top: 0.2rem;
+    }
+
+    a{
+        color: black;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: blue;
+        text-decoration: none;
+    }
+
+    
+    .carousel-caption {
+        opacity: 0.9;
+        left: 10px;
+        top: 5%;
+        text-align: left;
+        height: 100%;
+        max-height: 100%;
+        max-width: 50%;
+        right: auto;
+        color:white;
+        padding: 2rem;
+        bottom: 0;
+        padding-right: 1rem;
+    }
+
+
+    .recent {
+        padding-top: 5rem;
+    }
+
+    .recent h1 {
+        font-size: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .card {
+        border: none;
+        text-align: left;
+    }
+
+    .card-text {
+        text-align: left;
+    }
+    
+    .bio-body {
+        padding-top: 5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .fab {
+        padding: 0.7rem;
+    }
+
+    .image-card {
+        padding-top: 2rem;
+        border-radius: 50px;
+    }
+
+    .zoom {
+        transition: .5s ease;
+    }
+    .zoom:hover {
+        transform: scale(1.05); 
+        transition: .5s ease;
+
+    }
+
+    /*----overlay --*/
+
+    .carousel-item {
+        position: relative !important;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        transition: .5s ease;
+    }
+    .overlay:hover {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        transition: .5s ease;
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        opacity: 0;
+        transition: .5s ease;
+
+    }
+    .carousel-control-prev:hover, .carousel-control-next:hover {
+        opacity: 1;
+        transition: .5s ease;
+
+    }
+
+    .card-img-overlay {
+        text-align: left;
+        margin-top: 10%;
+        padding: 1rem;
+    }
+
+    @media only screen and (max-width: 950px) {
+        .carousel-caption {
+            opacity: 0.9;
+            left: 10px;
+            top: 5%;
+            text-align: left;
+            height: 100%;
+            max-height: 100%;
+            max-width: 100%;
+            right: auto;
+            color:white;
+            padding: 1rem;
+            bottom: 0;
+            font-size: medium;
+            padding-right: 1rem;
+        }
+        .carousel-caption h1 {
+           font-size: 30px; 
+        }
+        .blog-layout {
+            max-width: 100%;
+            margin-left: 0;
+            padding-left: 0;
+            margin-right: 0;
+            padding-right: 0;
+        }
+        .content-col {
+            margin-left: 0;
+            margin-right: 0;
+            padding-right: 0;
+        }
+        .recent {
+            padding: 0;
+            margin: 0;
+            padding-right: 0;
+            margin-right: 0;
+        }
+
+        .content {
+            font-size: 22px;
+            margin-right: 0;
+            padding-top: 5rem;
+    
+        }
+
+        .header {
+            padding-top: 5rem; 
+            margin-right: 18%; 
+            margin-left: 0;
+        }
+    } 
