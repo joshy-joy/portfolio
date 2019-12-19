@@ -43,3 +43,6 @@ admin.add_view(ModelView(Contact, db.session))
 admin.add_view(ModelView(Hire, db.session))
 admin.add_view(ModelView(Logs, db.session))
 
+
+def getApp():
+    return app
