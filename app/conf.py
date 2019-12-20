@@ -5,7 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 #configuring database
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
