@@ -4,27 +4,35 @@ from app.models import Project, Blog, Subscribe, Contact, Hire, Logs
 from flask_mail import Message
 from sqlalchemy import desc
 import os
-from app.admin_view import chechUnreadLog
 
 
 #mail sending functon
-def send_mail(name, email, type):
+def send_mail(name, email, types):
 
     msg = Message('Josh! The Developer', sender = 'joshyjoy.dev@gmail.com', recipients = [email])
     
-    if type == 'subscription':
+    if types == 'subscription':
         msg.html = render_template('email/subscribe.html', name = name)
 
-    elif type == 'contact':
+    elif types == 'contact':
         msg.html = render_template('email/hire_mail.html', name = name)
 
-    elif type == 'hire':
+    elif types == 'hire':
         msg.html = render_template('email/hire_mail.html', name = name)
 
 
     mail.send(msg)
     return 
 
+#inform mail
+def inform_mail(data, types):
+
+    msg = Message(data.fname + ' ' + types + ' request', sender = 'joshyjoy.dev@gmail.com', recipients = ['joshyjoy999@gmail.com'])
+
+    msg.html = render_template('email/inform.html', data = data, types = types)
+
+    mail.send(msg)
+    return
 
 
 #log recording
@@ -71,10 +79,12 @@ def contact():
         add_log(contact.id,'contact', fname + " contacted you")
         db.session.commit()
 
-        #send_mail(fname, email, 'contact')
-        chechUnreadLog()
+        send_mail(fname, email, 'contact')
+        inform_mail(contact, 'contact')
+        
+        flash('Your valuable message is succesfully recieved. Thank you', 'success')
 
-        return render_template('thanks.html')
+        return redirect(url_for('contact'))
 
 
     return render_template('contact.html')
@@ -123,10 +133,10 @@ def hire():
         add_log(hire.id,'hire', fname + " send you a hiring request")
         db.session.commit()
 
-        #send_mail(fname, email, 'hire')
-        chechUnreadLog()
+        send_mail(fname, email, 'hire')
+        inform_mail(hire, 'hire')
 
-        return render_template('thanks.html')
+        return redirect(url_for('hire'))
 
     return render_template('hire.html')
 

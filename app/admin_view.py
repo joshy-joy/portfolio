@@ -16,19 +16,6 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-#unreaded notifications
-def unreaded():
-    logs = Logs.query.filter_by(seen = False).all()
-    return len(logs)
-
-
-#check whether any new messages there
-def chechUnreadLog():
-    logs = unreaded()
-    if session['unreaded'] != logs:
-        session['unreaded'] = logs
-
-    return
 
 #----------------------------------------------END----------------------------------------------------#
 
@@ -77,7 +64,6 @@ def login():
             if check_password_hash(user.password, request.form['password']):
                 
                 login_user(user)
-                session['unreaded'] = unreaded()
                 return redirect('/dashboard')
             
             flash('Password mismatch', 'danger')

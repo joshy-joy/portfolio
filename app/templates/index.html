@@ -171,13 +171,13 @@
                         {% for project in projects %}
                         <div class="col-lg-4 col-md-6 col-sm-12 element-item latest">
                             <div class="our-project">
-                                <div class="img">
+                                <div class="img" >
                                     <a href="{{ project.link }}" target="_blank">
-                                        <img src="{{ url_for('static', filename = 'uploads/project/' + project['image'])}}" alt="portfolio-1" class="img-fluid">
+                                        <img src="{{ url_for('static', filename = 'uploads/project/' + project['image'])}}" alt="portfolio-1" class="img-fluid" style="border-radius: 25px;">
                                     </a>
                                 </div>
                                 <div class="title py-4">
-                                    <h4 class="text-uppercase">{{ project.title }}</h4>
+                                    <h5 class="text-uppercase">{{ project.title }}</h5>
                                     <span class="text-secondary">{{ project.description }}</span>
                                 </div>
                             </div>

@@ -23,9 +23,9 @@
                         </li>
                         {% if current_user.is_authenticated %}
                         <li class="nav-item">
-                            <div class="btn-group">
-                                <a id="admin-nav"  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px; height: 50px;">
-                                    {{ current_user.name }}
+                            <div class="btn-group" style="padding-right: 2rem;">
+                                <a id="admin-nav"  class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px; height: 50px; color: black;">
+                                    {{ current_user.name[0:8] }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="/dashboard">Dashboard</a>
