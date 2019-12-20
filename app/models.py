@@ -8,7 +8,7 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200))
     link = db.Column(db.String(200))
-    description = db.Column(db.Text(500))
+    description = db.Column(db.Text)
     image = db.Column(db.String(500))
 
     def __init__(self, title, link, description, image):
@@ -26,7 +26,7 @@ class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200), nullable = False)
-    content =  db.Column(db.Text(1000), nullable = False)
+    content =  db.Column(db.Text, nullable = False)
     cover_img = db.Column(db.String(200))
     date = db.Column(db.DateTime, nullable = False, default=datetime.utcnow, onupdate = datetime.utcnow)
     category = db.Column(db.String(20), nullable = False)
