@@ -46,5 +46,5 @@ admin.add_view(ModelView(Logs, db.session))
 
 def getApp():
 
-    db.create_all()
+    #db.create_all()
     return app
