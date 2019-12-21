@@ -23,7 +23,6 @@ def load_user(user_id):
 #route for register
 #-------------------------------------------------------------------------------------------------------#
 @app.route('/add-user', methods = ['GET', 'POST'])
-@login_required
 def add_user():
     
     if request.method == 'POST':
