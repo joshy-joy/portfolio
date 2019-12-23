@@ -135,6 +135,7 @@ def hire():
 
         send_mail(fname, email, 'hire')
         inform_mail(hire, 'hire')
+        flash('Your request is recieved', 'success')
 
         return redirect(url_for('hire'))
 
@@ -147,35 +148,38 @@ def hire():
 
 
 
-#route for product
+#route for blog
 #-------------------------------------------------------------------------------------------------------#
 @app.route('/blogs/<int:page_num>', methods = ['GET','POST'])
 def blogs(page_num):
 
-    recent = Blog.query.order_by(desc(Blog.date)).limit(6).all()
-    tags = Blog.query.with_entities(Blog.tags).distinct().all()
-    cat = Blog.query.with_entities(Blog.category).distinct().all()
+    try:
+        recent = Blog.query.order_by(desc(Blog.date)).limit(6).all()
+        tags = Blog.query.with_entities(Blog.tags).distinct().all()
+        cat = Blog.query.with_entities(Blog.category).distinct().all()
 
-    if recent:
-        active = recent.pop(0)
+        if recent:
+            active = recent.pop(0)
 
-    i = 0
-    carousel = []
-    while recent:
-        if i>=2 or len(recent)<0:
-            break
-        carousel.append(recent.pop(0))
-        i+=1
+        i = 0
+        carousel = []
+        while recent:
+            if i>=2 or len(recent)<0:
+                break
+            carousel.append(recent.pop(0))
+            i+=1
+        
+        popular = Blog.query.paginate(per_page = 10, page = page_num, error_out = True)
+        
+        if request.method == 'POST':
+
+            search = request.form['search']
+            return redirect(url_for('search', keyword = search, page_num = 1))
+
+        return render_template('blog/blogs.html', active = active, carousel = carousel, recent = recent, popular = popular, tags = tags, cat = cat, active_page_num = page_num)
     
-    popular = Blog.query.paginate(per_page = 10, page = page_num, error_out = True)
-    
-    if request.method == 'POST':
-
-        search = request.form['search']
-        return redirect(url_for('search', keyword = search, page_num = 1))
-
-    return render_template('blog/blogs.html', active = active, carousel = carousel, recent = recent, popular = popular, tags = tags, cat = cat, active_page_num = page_num)
-
+    except Exception as e:
+        return render_template('error.html', error = '404')
 
 #----------------------------------------------END----------------------------------------------------#
 

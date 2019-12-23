@@ -4,6 +4,8 @@ from flask import render_template, request, redirect, url_for, flash, session
 from app.models import User, Project, Blog, Logs
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, fresh_login_required
 from werkzeug.security import check_password_hash, generate_password_hash
+import boto3
+from app.conf import S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 
 
@@ -15,6 +17,13 @@ login_manager.login_view = 'login'
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+#boto - aws-s3 resource settings
+def aws_s3_conn():
+    s3_resource = boto3.resource('s3')
+    my_bucket = s3_resource.Bucket(S3_BUCKET)
+    return my_bucket
+
 
 
 #----------------------------------------------END----------------------------------------------------#
@@ -131,9 +140,14 @@ def add_project():
         file_ext = image.filename.split('.')
         filename = str(uuid.uuid4()) + '.' + file_ext[-1]
 
-        image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'project/'+ filename))
+        #uploading to s3 bucket
+        s3 = aws_s3_conn()
+        s3.Object('upload/projects/{}'.format(filename)).put(Body = image, 
+                        ContentType='image/jpeg', 
+                        ACL='public-read')
 
-        project = Project(title, link, description, filename)
+        public_link = 'https://devjosh.s3.ap-south-1.amazonaws.com/upload/projects/{}'.format(filename)
+        project = Project(title, link, description, public_link)
         db.session.add(project)
         db.session.commit()
 
@@ -160,8 +174,14 @@ def edit_project(id):
         project.description = request.form['description']
         image = request.files['image']
 
+        #changing image in aws
         if image:
-            image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'project/'+ project.image))
+            s3 = aws_s3_conn()
+            filename = project.image.split('/')[-1]
+            s3.Object('upload/projects/{}'.format(filename)).put(Body = image, 
+                        ContentType='image/jpeg', 
+                        ACL='public-read')
+
 
         db.session.commit()
 
@@ -183,9 +203,12 @@ def delete_article(id):
 
     project = Project.query.get(id)
 
-    if os.path.exists(os.path.join(app.config["IMAGE_UPLOADS"], 'project/'+ project.image)):
-        os.remove(os.path.join(app.config["IMAGE_UPLOADS"], 'project/'+ project.image))
+    #delete file from aws s3
+    s3 = boto3.resource("s3")
+    key = 'upload/projects/' + project.image.split('/')[-1]
+    s3.Object(S3_BUCKET, key).delete()
 
+    #delete record from database
     db.session.delete(project)
     db.session.commit()
 
@@ -213,9 +236,15 @@ def add_blog():
         file_ext = image.filename.split('.')
         filename = str(uuid.uuid4()) + '.' + file_ext[-1]
 
-        image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'blog/'+ filename))
+        #storing file to aws s3
+        s3 = aws_s3_conn()
+        s3.Object('upload/blogs/{}'.format(filename)).put(Body = image, 
+                        ContentType='image/jpeg', 
+                        ACL='public-read')
 
-        blog = Blog(title,category, content, filename, tag, False)
+        #storing data in database
+        public_link = 'https://devjosh.s3.ap-south-1.amazonaws.com/upload/blogs/{}'.format(filename)
+        blog = Blog(title,category, content, public_link, tag, False)
         db.session.add(blog)
         db.session.commit()
 
@@ -246,8 +275,13 @@ def edit_blog(id):
         image = request.files['image']
 
         if image:
-            image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'project/'+ blog.cover_img))
-
+            #rewriting file in aws s3
+            s3 = aws_s3_conn()
+            filename = blog.cover_img.split('/')[-1]
+            s3.Object('upload/blogs/{}'.format(filename)).put(Body = image, 
+                        ContentType='image/jpeg', 
+                        ACL='public-read')
+            
         db.session.commit()
 
         return redirect(url_for('dashboard'))
@@ -272,9 +306,12 @@ def delete_blog(id):
 
     blog = Blog.query.get(id)
 
-    if os.path.exists(os.path.join(app.config["IMAGE_UPLOADS"], 'blog/'+ blog.cover_img)):
-        os.remove(os.path.join(app.config["IMAGE_UPLOADS"], 'blog/'+ blog.cover_img))
+    #delete file from aws s3
+    s3 = boto3.resource("s3")
+    key = 'upload/blogs/' + blog.cover_img.split('/')[-1]
+    s3.Object(S3_BUCKET, key).delete()
 
+    #deleting record in database
     db.session.delete(blog)
     db.session.commit()
 
@@ -310,7 +347,6 @@ def mark_us_read(id):
     if log:
         log.seen = True
         db.session.commit()
-        chechUnreadLog()
 
         return redirect(url_for('notification'))
     return redirect(url_for('notification'))
@@ -318,8 +354,15 @@ def mark_us_read(id):
 
 
 
-@app.route('/settings')
-@login_required
-@fresh_login_required
-def settings():
-    return render_template('admin/settings.html')
+#ERROR Handling
+@app.errorhandler(404)
+def error_404(error):
+    return render_template('error.html', error = '404' )
+
+@app.errorhandler(403)
+def error(error):
+    return render_template('error.html', error = '403' )
+
+@app.errorhandler(500)
+def error(error):
+    return render_template('error.html', error = '500' )

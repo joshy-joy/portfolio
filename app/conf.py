@@ -5,7 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 #configuring database
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') #'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
@@ -13,16 +13,18 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 FLASK_ADMIN_SWATCH = 'cerulean'
 
 #secret Key
-SECRET_KEY = '40b4739103be318ada4a909e6e3ac1a5bd40a5da28db408a385789b32affaba0'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 #mail sending configuration
 MAIL_SERVER ='smtp.gmail.com'
 MAIL_PORT = 465
-MAIL_USERNAME = 'joshyjoy.dev@gmail.com'
-MAIL_PASSWORD = 'joshy@joykl007'
+MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
 
+#AWS S3 configurations
+S3_BUCKET = os.environ.get('S3_BUCKET')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
-#image uploading path
-IMAGE_UPLOADS = os.path.join(basedir, 'static/uploads')

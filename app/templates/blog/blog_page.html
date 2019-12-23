@@ -45,7 +45,7 @@
             <div class="row no-gutter">
                 <div class="col-md-10 content-col">
                     <div >
-                        <img class="d-block w-75 h-75" src="{{ url_for('static', filename = 'uploads/blog/' + blog['cover_img']) }}" alt="cover-img">
+                        <img class="d-block w-75 h-75" src="{{ blog.cover_img }}" alt="cover-img">
                     </div>
                     <div class="row">
                         <div class="col content">
@@ -63,7 +63,7 @@
                                     <div class="row no-gutters" style="border: 0.5px solid #e8e9eb;">
                                         <div class="col-md-4">
                                             <a href="/blog-page/{{ popular.id }}" class="blog-link">
-                                                <img src="{{ url_for('static', filename = 'uploads/blog/' + popular['cover_img'])}}" class="card-img" alt="img">
+                                                <img src="{{ popular.cover_img }}" class="card-img" alt="img">
                                             </a>
                                         </div>
                                         <div class="col-md-8">
