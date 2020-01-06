@@ -1,0 +1,434 @@
+{% extends 'base.html' %}
+{% set active_page = "api" %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css?family=Josefin+Slab&display=swap" rel="stylesheet">
+
+<style>
+    hr {
+        background-color: white;
+    }
+    /*forms*/
+    .form-div {
+        border-radius: 5px;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-bottom: 5%;
+    }
+
+    .form-label {
+        padding-top: 3px;
+    }
+
+    .form-button {
+        margin-left: 40%;
+        background-color: white;
+        border: 1px solid white;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /*Output*/
+    .col-md-6 {
+        border-radius: 5px;
+        padding-bottom: 5%;
+    }
+
+    .report {
+        padding-top: 3%;
+        padding-bottom: 2%;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .result {
+        border-radius: 5px;
+    }
+
+    .prediction {
+        margin: 3%;
+        padding-top: 3%;
+        padding-left: 1%;
+        padding-right: 1%;
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+    }
+
+    .name {
+        padding-top: 1%; 
+        padding-bottom: 1%;
+        padding-left: 2%;
+        margin-left: 1%;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .overview {
+        padding-top: 5%; 
+        padding-bottom: 10%;
+    }
+
+    .chart {
+        margin: 3%;
+        margin-top: 3%;
+        padding-top: 10%;
+        padding-bottom: 3%;
+        border-radius: 5px;
+    }
+
+    .data {
+        color: white;
+        font-family: 'Josefin Sans', sans-serif;
+        margin: 3%;
+        padding-top: 3%;
+    }
+
+    table {
+        border-radius: 5px;
+    }
+
+    .bg-red {
+        background: rgb(242,93,82);
+        background-image: linear-gradient(144deg, rgba(242,93,82,0.7875525210084033) 0%, rgba(214,28,72,1) 48%, rgba(124,47,35,0.011642156862745057) 100%);
+        color: black;
+    }
+
+    .bg-green {
+        background: rgb(112,230,175);
+        background-image: linear-gradient(144deg, rgba(112,230,175,0.7875525210084033) 0%, rgba(35,161,153,1) 48%, rgba(35,106,124,0.011642156862745057) 100%);
+        color: black;
+    }
+
+    .bg-blue {
+        background: rgb(98,25,224);
+        background-image: linear-gradient(144deg, rgba(98,25,224,0.7875525210084033) 0%, rgba(28,126,214,1) 48%, rgba(72,81,83,0.011642156862745057) 100%);
+        color: white;
+    }
+    
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-uppercase title-text text-center" style="padding-top: 5%; padding-bottom: 3%;">Treatment Prediction<br>System</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="report text-center {{ color }}">diagnosis report</h1>
+            <div class="result {{ color }}">
+                <br>
+                {% if name %}
+                    <h3 class="name">NAME : {{ name }}</h1>
+                {% endif %}
+                <div class="prediction">
+                    {% if flag %}
+                        {% if predict == 0 %}
+                            <div class="overview">
+                                <h3 class="text-center title-text">Good News!</h3><br>
+                                <h4 style="padding-bottom: 2%">
+                                    You are mentaly fit.
+                                    Throw a Party Now.
+                                </h4>
+                            </div>
+                        {% else %}
+                            <div class="overview"> 
+                                <h3 class="text-center title-text">Opps!</h3><br>
+                                <h4 style="padding-bottom: 2%">We are observing some Mental Health Issues with you.
+                                Take a Break Now. We prefer to consult a Doctor to confirm the issue.
+                                </h4>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="overview">
+                            <h3 class="text-center title-text">Hello</h3><br>
+                            <h4 class="text-center" style="padding-bottom: 2%;">Please submit the form to know your result.</h4>
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% if flag %}
+                <div class="chart" style="background-color: white;">
+                    <canvas id="myChart">
+                        <!-- Donut chart will appear here -->
+                    </canvas>
+                </div>
+                {% endif %}
+
+                {% if inputs %}
+                    <div class="data">
+                        <table class="table table-dark">
+                            <tbody>
+                              <tr>
+                                <td>Age</td>
+                                <td>{{ inputs.Age }}</td>
+                              </tr>
+                              <tr>
+                                <td>Gender</td>
+                                <td>{{ inputs.Gender }}</td>
+                              </tr>
+                              <tr>
+                                <td>Work Interfere</td>
+                                <td>{{ inputs.work_interfere }}<td>
+                              </tr>
+                              <tr>
+                                <td>Benefits</td>
+                                <td>{{ inputs.benefits }}<td>
+                              </tr>
+                              <tr>
+                                <td>Care Options</td>
+                                <td>{{ inputs.care_options }}<td>
+                              </tr>
+                              <tr>
+                                <td>Anonymity</td>
+                                <td>{{ inputs.care_options }}<td>
+                              </tr>
+                              <tr>
+                                <td>Leave</td>
+                                <td>{{ inputs.leave }}<td>
+                              </tr>
+                              <tr>
+                                <td>Mental Health Consequence</td>
+                                <td>{{ inputs.mental_health_consequence }}<td>
+                              </tr>
+                              <tr>
+                                <td>Supervisor</td>
+                                <td>{{ inputs.supervisor }}<td>
+                              </tr>
+                              <tr>
+                                <td>Physical Health Interview</td>
+                                <td>{{ inputs.phys_health_interview }}<td>
+                              </tr>
+                              <tr>
+                                <td>Number of employees</td>
+                                <td>{{ inputs.no_employees }}<td>
+                              </tr>
+                              <tr>
+                                <td>OBS Consequence</td>
+                                <td>{{ inputs.obs_consequence }}<td>
+                              </tr>
+                              <tr>
+                                <td>Family History</td>
+                                <td>{{ inputs.family_history }}<td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                <br>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-div {{ color }}" style="padding-top: 1%; margin-left: 1%; margin-right: 1%;">
+                <form method="POST" validate>
+                    <h3 class="text-center form-label">Personal Info</h3>
+                    <hr>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" name = "fname" class="form-control" placeholder="First name" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" name = "lname" class="form-control" placeholder="Last name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="padding-top: 3%; padding-bottom: 3%;">
+                        <div class="col">
+                            <select name="gender" class="form-control" required>
+                                <option class="option">Gender</option>
+                                <option class="option" value="male">Male</option>
+                                <option class="option" value="female">Female</option>
+                                <option class="option" value="other">Other</option>
+                            </select>
+                            <span class="select-btn">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="col">
+                            <input type="number" name = "age" class="form-control" placeholder="Age(19-50)" min="19" max="51" required>
+                        </div>
+                    </div>
+
+                    <h3 class="text-center form-label">Work Info</h3>
+                    <hr>
+
+                    <div class="form-group">
+                        <label class="form-label" for="work-interfere">1. If you have a mental health condition, do you feel that it interferes with your work?</label>
+                        <select name="work-interfere" class="form-control" id="work-interfere" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Never">Never</option>
+                            <option class="option" value="Rarely">Rarely</option>
+                            <option class="option" value="Sometimes">Sometimes</option>
+                            <option class="option" value="Often">Often</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="benefits">2. Doe s your employer provide mental health benefits?</label>
+                        <select name="benefits" class="form-control" id="benefits" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Yes">Yes</option>
+                            <option class="option" value="No">No</option>
+                            <option class="option" value="NA">Don't know</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="care_options">3. Do you know the options for mental health care your employer provides?</label>
+                        <select name="care_options" class="form-control" id="care_options" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Yes">Yes</option>
+                            <option class="option" value="No">No</option>
+                            <option class="option" value="NA">Not sure</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="anonymity">4. Is your anonymity protected if you choose to take advantage of mental health or substance abuse treatment resources ?</label>
+                        <select name="anonymity" class="form-control" id="anonymity" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Yes">Yes</option>
+                            <option class="option" value="No">No</option>
+                            <option class="option" value="NA">Don't know</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="leave">5. How easy is it for you to take medical leave for a mental condition?</label>
+                        <select name="leave" class="form-control" id="leave" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Very difficult">Very difficult</option>
+                            <option class="option" value="Somewhat difficult">Somewhat difficult</option>
+                            <option class="option" value="Somewhat easy">Somewhat easy</option>
+                            <option class="option" value="Very easy">Very easy</option>
+                            <option class="option" value="NA">Don't know</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="mental">6. Do you think that discussing a mental health issue with your employer would have negative consequences?</label>
+                        <select name="mental" class="form-control" id="mental" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Yes">Yes</option>
+                            <option class="option" value="No">No</option>
+                            <option class="option" value="NA">Maybe</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="supervisor">7. Would you be willing to discuss a mental health issue with your direct suppervisor(s)?</label>
+                        <select name="supervisor" class="form-control" id="supervisor" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Yes">Yes</option>
+                            <option class="option" value="No">No</option>
+                            <option class="option" value="NA">Some of them</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phy">8. Would you bring up a physical health issue with a potential employer in an interview?</label>
+                        <select name="phy" class="form-control" id="phy" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Yes">Yes</option>
+                            <option class="option" value="No">No</option>
+                            <option class="option" value="NA">Maybe</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="no_emp">9. How many employees does your company or organization have?</label>
+                        <select name="no_emp" class="form-control" id="no_emp" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="1-5">1-5</option>
+                            <option class="option" value="6-25">6-25</option>
+                            <option class="option" value="26-100">26-100</option>
+                            <option class="option" value="100-500">100-500</option>
+                            <option class="option" value="500-1000">500-1000</option>
+                            <option class="option" value="More than 1000">More than 1000</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phy">10. Do you have family history of illness?</label>
+                        <select name="family_history" class="form-control" id="family_history" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Yes">Yes</option>
+                            <option class="option" value="No">No</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phy">11. have you heard of or observed negative consequences for coworkers with mental health consition in your workplace?</label>
+                        <select name="obs_consequence" class="form-control" id="obs_consequence" required>
+                            <option class="option">Select Option</option>
+                            <option class="option" value="Yes">Yes</option>
+                            <option class="option" value="No">No</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-button" type="submit" value="Predict">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+{% if flag %}
+    <script>
+        var prob = ['{{ prob[0] }}' ,'{{ prob[1] }}'];
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels : ['Health', 'Unhealthy'],
+            datasets : [{
+                backgroundColor: ['rgb(112,230,175)','rgb(242,93,82)'],
+                data: prob,
+            }]
+        },
+        });
+    </script>
+{% endif %}
+
+{% endblock %}

@@ -18,7 +18,7 @@ db = SQLAlchemy(app)
 mail = Mail(app)
 
 #importing views
-from app import views, admin_view
+from app import views, admin_view, api_view
 
 #importing models
 from app.models import Project, Blog, Subscribe, User, Contact, Hire, Logs
@@ -46,5 +46,4 @@ admin.add_view(ModelView(Logs, db.session))
 
 def getApp():
 
-    #db.create_all()
     return app

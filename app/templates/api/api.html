@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% set active_page = "api" %}
+
+{% block head %}
+
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row-container" style="margin-top: 10%; margin-left: 10%;">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ url_for('static', filename = 'img/api/treatmentapi.jpg')}}" alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">Employee Treatment Prediction V1.0</h5>
+            <p class="card-text">Accuracy : 70%</p>
+            <p class="text-center">
+                <a href="api/treatment-predict" class="btn btn-primary">Try Out</a>
+            </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
